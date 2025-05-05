@@ -15,3 +15,15 @@
 - $(f * g)(\bold{x}) = \int f(\bold{z})g(\bold{x} - \bold{z})d\bold{z}$ 
 
 
+
+## 7.2 Convolutions for Images (05/05/2025)
+
+* Kernel for Croess-Correlation Operation
+  
+  * for kernel $k_h \times k_w$,
+  
+  * input $n_h \times n_w$
+  
+  * output size: $(n_h - k_h + 1) \times (n_w - k_w + 1)$
+
+* Feature Map and Receptive Field
