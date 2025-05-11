@@ -27,10 +27,10 @@
   * output size: $(n_h - k_h + 1) \times (n_w - k_w + 1)$
 
 * Feature Map and Receptive Field
-
-
-
-
+  
+  
+  
+  
 
 ## 7.3 Padding and Stride
 
@@ -54,6 +54,18 @@
   
   * output shape: $\left\lfloor (n_h - k_h + p_h + s_h)/s_h \right\rfloor \times \left\lfloor (n_w - k_w + p_w + s_w)/s_w \right\rfloor$ 
 
- 
 
 
+
+
+## 7.4 Multiple Input and Multiple Output Channels
+
+- Multiple Input Channels
+  
+  - the convolution is done through Frobenius inner product: which is: 1. do the elementwise multiplication; 2. summing up the elements in the result of last step
+
+- 1 X 1 Convolutional Layer
+  
+  - computation of 1 X 1 conv occurs one the *channel dimension*
+  
+  - Input and output would have same height and width: transform the $c_i$ corresponding input values into $c_o$ output values.
