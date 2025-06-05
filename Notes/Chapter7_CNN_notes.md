@@ -53,10 +53,10 @@
 * for stride $s_h$ and $s_w$: 
   
   * output shape: $\left\lfloor (n_h - k_h + p_h + s_h)/s_h \right\rfloor \times \left\lfloor (n_w - k_w + p_w + s_w)/s_w \right\rfloor$ 
-
-
-
-
+    
+    
+    
+    
 
 ## 7.4 Multiple Input and Multiple Output Channels
 
@@ -69,3 +69,15 @@
   - computation of 1 X 1 conv occurs one the *channel dimension*
   
   - Input and output would have same height and width: transform the $c_i$ corresponding input values into $c_o$ output values.
+
+## 7.5 Pooling
+
+* Max and Avg Pooling
+  
+  * maxp(1, 2, 3, 4) = 4
+  
+  * avgp(1, 2, 3, 4) = 2.5
+
+* Padding and Stride
+
+
