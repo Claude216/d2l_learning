@@ -81,3 +81,11 @@
 * Padding and Stride
 
 
+
+
+
+
+
+## 7.6 Convolutional Nerual Networks (LeNet)
+
+
