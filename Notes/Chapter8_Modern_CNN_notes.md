@@ -37,10 +37,38 @@
   * pooling layer like max-pooling to reduce resolution
   * issue: spatial resolution decreases quite rapidly
     
-       
+    
 
 ### VGG Network
 
 * VGG consists of blocks of layers while AlexNet's layers are all designed individually
 
 * "From layers to block of layers"
+  
+  
+
+## 8.3 Network in Network (NIN)
+
+### NiN Blocks
+
+* No giant fully connected layers 
+
+* Instead, global avg pooling to aggragate across all image locations after the last stage of the network body.
+  
+  * The avg operation did NOT harm accuracy. 
+
+
+
+
+
+## 8.4 Multi-Branch Networks (GoogLeNet)
+
+### Inception Blocks
+
+* Explore the image in a variey of filter sizes. 
+
+### GoogLeNet:
+
+* This model is computationally complex
+
+
