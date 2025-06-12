@@ -56,10 +56,10 @@
 * Instead, global avg pooling to aggragate across all image locations after the last stage of the network body.
   
   * The avg operation did NOT harm accuracy. 
-
-
-
-
+    
+    
+    
+    
 
 ## 8.4 Multi-Branch Networks (GoogLeNet)
 
@@ -70,5 +70,89 @@
 ### GoogLeNet:
 
 * This model is computationally complex
+  
+  
+  
+  
+
+## 8.5 Batch Normalization
+
+* A popular and effective tech for accelerating the convergence of deep networks.
+
+### Traning Deep Networks
+
+* Why we want batch normalization? 
+  
+  * The standardization plays nicely with the optimizers since it puts the parameters a priori on a similar scale. 
+  
+  * variables in intermediate layers may take values with widely varying magnitudes: the drift in the distribution of such variables could hamper the convergence of the network.
+  
+  * Deeper NN are complex and tend to be more liable to overfitting: regularization becomes more critical.
+    
+    * noise injection
+
+* Batch normalization: preprocessing, numerical stability and regularization. 
+
+* $BN(x) = \gamma \odot \frac {x - \hat{\mu}} {\hat{\sigma}} + \beta$
+
+* BN layers function differently in *training mode* (normalizing by minibatch statistics) than in *prediction mode* (normalizing by dataset statistics). 
+
+### Batch Normalization Layers
+
+#### Fully Connected Layers
+
+* in original paper, BN was before the nonlinear activation function
+
+* Later applications epxerimented BN after the activation functions. 
+
+#### Convolutional Layers
+
+#### Layer Normalization:
+
+* Adv: 
+  
+  * it prevents divergence; the output of the layer normalization is scale independent if ignoring $\epsilon$
+  
+  * it doesn't depend on the minibatch size. 
+    
+    * it's simply a deterministic transformation that standardizes the activations to a given scale. 
+
+#### Batch Normalization During Prediction
+
+* noise in sample mean and sample variatnce is no longer desirable once model trained. 
+
+* After training, use the entire dataset to compute stable estimates of the variable statistics and then fix them at prediction time. 
+  
+  ### 
+
+### Discussion
+
+* why is BN effective? 
+  
+  * reducing internal covariate shift.
+
+* some takeaways: 
+  
+  * BN adjusts the intermediate output of networks by utilizing the mean and standard deviation of the minibatch --> the values of the intermediate output in each layer throughout the neural network are more stable
+  
+  * BN is slightly different for fully connected layers than for convolutional layers. For Conv layers, LN can be used as an alternative
+  
+  * Like a dropout layer, BN layers have diff behaviors in training than in prediction mode
+  
+  * BN is useful for regularization and improving convergence in optimization. However, reducing internal covariate shift seems not  to be a valid explanation.
+  
+  * For models that are less sensitive to input perturbations, consider removing BN.
+    
+    
+    
+    
+
+## 8.6 Residual Networks (ResNet) and ResNeXt
+
+### Residual Blocks
+
+* residual mapping $g(x) = f(x) - x$
+
+* a shortcut for the input to forward propagate faster
 
 
