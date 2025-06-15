@@ -154,5 +154,65 @@
 * residual mapping $g(x) = f(x) - x$
 
 * a shortcut for the input to forward propagate faster
+  
+  
+  
+  
+  
+  
+
+## 8.7 Densely Connected Networks (DenseNet)
+
+### From ResNet to DenseNet
+
+* use concatenation [ , ] rather than + 
+  
+  * ResNet: $x \rarr x + f_1(x) + f_2(f_1(x)) + ...$
+  
+  * DenseNet: $ x \rarr [x, f_1(x), f_2([x, f_1(x), ...]$
+
+* "Dense"Net: the final layer of such concatenation is densely connected to ALL previous layers. 
+
+* Main compounents: *dense blocks* and *transition layers*
+  
+  * dense blocks define how the inputs and outputs are concatenated
+  
+  * transition layers control the number of channels to avoid becoming too large as the expansion of denseNet can be quite high-dimensional
+    
+    
+
+### Dense Blocks
+
+* Modified "batch normalization", "activation", and "convolution" of ResNet. 
+  
+  * multiple conv blocks with same number of output channels. 
+  
+  * concatenate the input and output of each conv block on the channel dimension in forward propagation. 
+  
+  * output channel # = input channels + conv channels + output channels 
+  
+  * Num of conv block channels controls the growth in the num of output channels relative to the number of input channels $\rarr $ growth rate is another name of num of channels for conv layers
+
+### Transition Layers
+
+* Each dense block will increase the number of channels
+  
+  * Complexity increases as adding too many of them
+
+* Transition layer
+  
+  * reduces the num of channels by using a $1 \times 1$ conv. 
+  
+  * halves the height and width via avg pooling with a stride of 2
+
+### Discussion:
+
+* DenseNet may require more GPU memory when training
+
+
+
+
+
+## Designing Convolution Network Architectures
 
 
