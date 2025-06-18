@@ -2,7 +2,7 @@
 
 
 
-## Working with Sequences
+## 9.1 Working with Sequences
 
 * The evolution
 
@@ -33,10 +33,10 @@
 #### The order of decoding
 
 * factorizing text in the same direction we read it (left to right, or, beginning to the end)
-
-
-
-
+  
+  
+  
+  
 
 ## 9.2 Converting Raw text into Sequence Data
 
@@ -50,7 +50,7 @@
   
   * Convert the text into sequences of numerical indices.
     
-     
+    
 
 ### Reading the Dataset
 
@@ -83,3 +83,89 @@
   * (ii) build vocabulary to map token strings to numerical indices
   
   * (iii) convert text data into token indices for models to manipulate
+
+
+
+## 9.3 Language Models
+
+### Learning Language Models
+
+#### Markov Models and n-grams
+
+* probability formulae that involve: 
+  
+  * one $\rarr$ unigram
+  
+  * two $\rarr$ bigram
+  
+  * three $\rarr$ trigram
+
+#### World Frequency
+
+* $\hat P (Y | X) = \frac {n(X, Y)} {n(X)}$
+
+* $n(X, Y)$: num of occurrences of consecutive word pair XY
+
+* $n(X) $: num of occurrences of singletons X
+
+#### Laplace smoothing
+
+* many n-grams occur very rarely, making laplace smoothing rather unsuitable for language modeling.
+
+* we need to store all counts
+
+* this entirely ignoires the meaning of the words. 
+
+
+
+### Perplexity:
+
+* how to measure the quality of the language model? 
+  
+  * by computing the likelihood of the sequence. 
+  
+  * by the cross-entropy loss averaged over all the n tokens of a sequence
+  
+  * perplexity: 
+    
+    * $exp(- \frac 1 n \sum^n_{t=1} logP(x_t|x_{t-1}, ..., x_1))$
+
+
+
+
+
+### Partitioning Sequences
+
+* how to read minibatches of input sequences and target sequences at random.
+  
+  * partition the corpus (contains token indices) into subsequences, each has n tokens. 
+  
+  * at the begining of each epoch, discard the first d tokens where d is uniformly sampled at random. The rest of hte sequence is then partitioned into $m = \lfloor (T-d) / n\rfloor$  subseuqnces. 
+
+
+
+
+
+
+
+## 9.4 Recurrent Neural Networks
+
+* RNN: neural networks with hidden states
+
+
+
+### Neural Networks without hidden States
+
+* MLP
+
+
+
+### Recurrent Neural Networks with Hidden States
+
+* $H_t = \phi(X_tW_{xh} + H_{t-1}W_{hh} + b_h$ 
+
+* NN with hidden states based on recurrent computation are named RNN
+
+* Layers perform the computuation of this formula are called recurrent layers
+
+* With recurrent computation the number of RNNmodel parameters does not grow as the number of time steps increases. 
