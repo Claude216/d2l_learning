@@ -83,8 +83,8 @@
   * (ii) build vocabulary to map token strings to numerical indices
   
   * (iii) convert text data into token indices for models to manipulate
-
-
+    
+    
 
 ## 9.3 Language Models
 
@@ -115,8 +115,8 @@
 * we need to store all counts
 
 * this entirely ignoires the meaning of the words. 
-
-
+  
+  
 
 ### Perplexity:
 
@@ -129,10 +129,10 @@
   * perplexity: 
     
     * $exp(- \frac 1 n \sum^n_{t=1} logP(x_t|x_{t-1}, ..., x_1))$
-
-
-
-
+      
+      
+      
+      
 
 ### Partitioning Sequences
 
@@ -141,24 +141,24 @@
   * partition the corpus (contains token indices) into subsequences, each has n tokens. 
   
   * at the begining of each epoch, discard the first d tokens where d is uniformly sampled at random. The rest of hte sequence is then partitioned into $m = \lfloor (T-d) / n\rfloor$  subseuqnces. 
-
-
-
-
-
-
+    
+    
+    
+    
+    
+    
 
 ## 9.4 Recurrent Neural Networks
 
 * RNN: neural networks with hidden states
-
-
+  
+  
 
 ### Neural Networks without hidden States
 
 * MLP
-
-
+  
+  
 
 ### Recurrent Neural Networks with Hidden States
 
@@ -169,3 +169,51 @@
 * Layers perform the computuation of this formula are called recurrent layers
 
 * With recurrent computation the number of RNNmodel parameters does not grow as the number of time steps increases. 
+
+
+
+
+
+## 9.5 RNN implementation from Scratch
+
+### RNN model
+
+### RNN-Based Language Model
+
+#### One-Hot Encoding:
+
+* e.g., label is 1 out of [0, 1, 2] $\rarr$ [0, 1, 0]
+
+#### Transforming RNN Outputs
+
+* Language model uses a fully connected output layer to transform RNN outputs into token pred at each *time step*
+
+
+
+### Gradient Clipping
+
+* RNNs sufer from exploding gradients
+
+* so we clip the gradients to force the resulting gradients to take smaller values. 
+
+* Lipschitz constinuous with constant L: 
+  
+  * $|f(x) - f(y)| \le L||x - y||$ 
+
+* one way to limite the size of $L\eta ||g||$ is to shrink the learning rate $\eta$ to tiny values.
+
+
+
+### Decoding:
+
+* Warm-up
+  
+  * Looping through the characters in prefix, keep passing the hidden state to the next time step but do not generate any output.
+
+
+
+
+
+## 9.6 Concise Implementation of Recurrent Neural Networks
+
+* 
