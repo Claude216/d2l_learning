@@ -169,10 +169,10 @@
 * Layers perform the computuation of this formula are called recurrent layers
 
 * With recurrent computation the number of RNNmodel parameters does not grow as the number of time steps increases. 
-
-
-
-
+  
+  
+  
+  
 
 ## 9.5 RNN implementation from Scratch
 
@@ -187,8 +187,8 @@
 #### Transforming RNN Outputs
 
 * Language model uses a fully connected output layer to transform RNN outputs into token pred at each *time step*
-
-
+  
+  
 
 ### Gradient Clipping
 
@@ -201,19 +201,31 @@
   * $|f(x) - f(y)| \le L||x - y||$ 
 
 * one way to limite the size of $L\eta ||g||$ is to shrink the learning rate $\eta$ to tiny values.
-
-
+  
+  
 
 ### Decoding:
 
 * Warm-up
   
   * Looping through the characters in prefix, keep passing the hidden state to the next time step but do not generate any output.
-
-
-
-
+    
+    
+    
+    
 
 ## 9.6 Concise Implementation of Recurrent Neural Networks
+
+
+
+
+
+## 9.7 Backpropagation Through Time
+
+### Analysis of Gradients in RNNs
+
+
+
+### Backpropagation Through Time in Detail
 
 * 
