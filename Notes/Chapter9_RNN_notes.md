@@ -228,4 +228,4 @@
 
 ### Backpropagation Through Time in Detail
 
-* 
+
