@@ -9,8 +9,8 @@
   * They also have short memory in the form of ephemeral activations, which pass from each node to successive nodes.
 
 * LSTM introduces an intermediate type of storage via the memory cell. A memory cell is a composite unit, built from simpler nodes in a specific connectivity pattern, with the novel inclusion of multiplicative nodes. 
-
-
+  
+  
 
 ### Gated Memory Cell
 
@@ -23,8 +23,8 @@
   * the internal state of a given neuron should be allowed to impact the cell's output (the output gate)
     
     
-
-
+    
+    
 
 #### Gated Hidden State
 
@@ -70,8 +70,56 @@
 
 * Update equation: $C_t = F_t \odot C_{t-1} + I_t \odot \tilde C_t$
 
-#### Hidden State: 
+#### Hidden State:
 
 * Update equation: $H_t = O_t \odot tanh(C_t)$
 
+
+
+
+
+
+
+
+
+## Gated Recurrent Units (GRU)
+
+### Reset Gate and Update Gate
+
+* The 3 gates of LSTM are replaced by two: the reset gate and the update gate.
+
+* Reset gate: how much of previous state we might still want to remember
+
+* Update gate: how much of the new state is just a copy of the old one. 
+
+* $R_t = \sigma (X_tW_{xr} + H_{t-1}W_{hr} + b_r$
+
+* $Z_t = \sigma (X_tW_{xz} + H_{t-1}W_{hz} + b_z$
+
+* $W_{xr}, W_{xz} \in \R^{d \times h}$
+
+* $W_{hr}, W_{hz} \in \R^{h \times h}$
+
+* $b_r, b_z \in \R^{1 \times h}$
+
+### Candidate Hidden State
+
+* candidate hidden state: $\tilde H_t = tanh(X_tW_{xh} + (R_t \odot H_{t-1})W_{hh} + b_h)$
+
+* tanh is the activation function
+
+* The influence of the previous states can now be reduced with the elementwise multiplication of $R_t$ and $H_{t-1}$ 
+  
+  * Entries in teh reset gate $R_t$ are close to 1 $\rarr$ vanilla RNN
+  
+  * .... clase to 0, the candidate hidden state is the result of an MLP with $X_t$ as input. Any pre-existing hidden state is thus reset to defaults. 
+
+
+
+### Hidden State
+
+* Update equation for GRU: $H_t = Z_t \odot H_{t-1} + (1 - Z_t) \odot \tilde H_t$
+
 * 
+
+
