@@ -1,6 +1,6 @@
 # Modern RNNs
 
-# Long Short-Term Memory (LSTM)
+## 10.1 Long Short-Term Memory (LSTM)
 
 * Intuition: 
   
@@ -73,16 +73,16 @@
 #### Hidden State:
 
 * Update equation: $H_t = O_t \odot tanh(C_t)$
+  
+  
+  
+  
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-## Gated Recurrent Units (GRU)
+## 10.2 Gated Recurrent Units (GRU)
 
 ### Reset Gate and Update Gate
 
@@ -113,13 +113,37 @@
   * Entries in teh reset gate $R_t$ are close to 1 $\rarr$ vanilla RNN
   
   * .... clase to 0, the candidate hidden state is the result of an MLP with $X_t$ as input. Any pre-existing hidden state is thus reset to defaults. 
-
-
+    
+    
 
 ### Hidden State
 
 * Update equation for GRU: $H_t = Z_t \odot H_{t-1} + (1 - Z_t) \odot \tilde H_t$
 
-* 
 
 
+## Deep RNNs
+
+* The hidden state of the $l^{th}$ hidden layer that uses the activation function $\phi_l(H_t^{(l-1)}W_{xh}^{(l)} + H_{t-1}^{(l)}W_{hh}^{(l)} + b_h^{(l)}$
+
+* The output layer at the end: $O_t = H_t^{(L)}W_{hq} + b_q$
+
+* num of hidden layers L and num of hidden units h are hyperparameters that we can tune
+  
+  * common h: (64, 2056)
+  
+  * common depths L: (1, 8)
+
+
+
+## 10.4 Bidirectional Recurrent Neural Networks
+
+* Forward hidden state update function: $\overrightarrow H_t = \phi(X_tW_{xh}^{(f)} + \overrightarrow H_{t-1}W_{hh}^{(f)} + b_h^{(f)})$
+
+* Backward hidden state update function: $\overleftarrow H_t = \phi(X_tW_{xh}^{(b)} + \overleftarrow H_{t+1}W_{hh}^{(b)} + b_h^{(b)})$
+
+* Output layer: $O_t = H_tW_{hq} + b_{q}$
+
+* Bidirectional RNNs are mostly useful for sequence encoding and the estimation of observations given bidirectional context. 
+  
+  * But costly to train due to long gradient chains
