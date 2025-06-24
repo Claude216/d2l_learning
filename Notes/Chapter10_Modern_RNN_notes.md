@@ -119,8 +119,8 @@
 ### Hidden State
 
 * Update equation for GRU: $H_t = Z_t \odot H_{t-1} + (1 - Z_t) \odot \tilde H_t$
-
-
+  
+  
 
 ## Deep RNNs
 
@@ -133,8 +133,8 @@
   * common h: (64, 2056)
   
   * common depths L: (1, 8)
-
-
+    
+    
 
 ## 10.4 Bidirectional Recurrent Neural Networks
 
@@ -147,3 +147,35 @@
 * Bidirectional RNNs are mostly useful for sequence encoding and the estimation of observations given bidirectional context. 
   
   * But costly to train due to long gradient chains
+
+
+
+
+
+## 10.5 Machine Translation and the Dataset
+
+### Tokenization
+
+* For machine translation we prefer word-level tonization rather than a character-level one
+
+
+
+### Summary
+
+* Machine Translation: the task of *automatically mapping from a sequence representting a string of text in a source language to a string representing a plausible translation in a  target language.* 
+
+* By truncate and pad text sequences so that all of them will have the same length to be loaded in minibatches. 
+
+
+
+
+
+## The Encoder-Decoder Architecture
+
+* [Input] $\rarr$ [Encoder] $\rarr$ [State] $\rarr$ [Decoder] $\rarr$ [Output]
+
+### Encoder
+
+### Decoder
+
+
