@@ -147,30 +147,30 @@
 * Bidirectional RNNs are mostly useful for sequence encoding and the estimation of observations given bidirectional context. 
   
   * But costly to train due to long gradient chains
-
-
-
-
+    
+    
+    
+    
 
 ## 10.5 Machine Translation and the Dataset
 
 ### Tokenization
 
 * For machine translation we prefer word-level tonization rather than a character-level one
-
-
+  
+  
 
 ### Summary
 
 * Machine Translation: the task of *automatically mapping from a sequence representting a string of text in a source language to a string representing a plausible translation in a  target language.* 
 
 * By truncate and pad text sequences so that all of them will have the same length to be loaded in minibatches. 
+  
+  
+  
+  
 
-
-
-
-
-## The Encoder-Decoder Architecture
+## 10.6 The Encoder-Decoder Architecture
 
 * [Input] $\rarr$ [Encoder] $\rarr$ [State] $\rarr$ [Decoder] $\rarr$ [Output]
 
@@ -179,3 +179,41 @@
 ### Decoder
 
 
+
+## 10.7 Seq2Seq Learning for Machine Translation
+
+### Teacher Forcing
+
+* The original target seq is fed in to the decoder as input. 
+
+### Encoder
+
+* transformation of the RNN's recurrent layer: 
+  
+  * $h_t = f(x_t, h_{t-1}$
+
+* encoder transformation: 
+  
+  * $c = q(h_1, ..., h_T)$
+
+### Decoder
+
+* transformation of decoder's hidden layer: 
+  
+  * $s_{t^{'}} = g(y_{t^{'}-1}, c, s_{t^{'}-1})$
+
+
+
+### Evaluation
+
+* BLEU (bilingual evaluation understudy)
+  
+  * $exp(min(0, 1 - \frac {{len}_{label}} {{len}_{pred}})) \sum^k_{n=1}p_n^{\frac 1 {2^n}}$
+  
+  * k is the longest n-gram for matching
+
+
+
+## 10.8 Beam Search
+
+* 
