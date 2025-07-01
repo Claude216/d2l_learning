@@ -107,8 +107,8 @@
 * The implementation set the values of $v_i$ for $i > l$ to 0, and sets the attention weights to a large negative num, like $-10^6$. 
   
   * $\sum^n_{i=1}\alpha(q, k_i)v_i \rarr \sum^l_{i=1}\alpha(q, k_i)v_i$
-
-
+    
+    
 
 #### Batch Matrix Multiplication
 
@@ -117,16 +117,16 @@
 * $K = [K_1, K_2, ..., K_n] \in \R^{n \times b \times c}$
 
 * $BMM(Q, K) = [Q_1K_1, Q_2K_2, ..., Q_nK_n] \in \R^{n \times a \times c}$
-
-
+  
+  
 
 ### Scaled Dot Product Attention
 
 * $softmax(\frac {QK^\intercal} {\sqrt{d}})V \in \R^{n \times v}$
 
 * Use dropout for model regularization
-
-
+  
+  
 
 ### Additive Attention
 
@@ -137,14 +137,14 @@
   * Then this term is fed into a softmax to ensure both nonegativity and normalization. 
   
   * THe query and key are concatenated and fed into an MLP with a single hidden layer. 
-
-
+    
+    
 
 ## The Bahdanau Attention Mechanism
 
 * When predicting a token, if not all the input tokens are relevant, the model aligns only to parts of hte input sequence that are deemed relevant to the current prediction. 
-
-
+  
+  
 
 ### Defining the decoder with Attention
 
@@ -159,5 +159,41 @@
 ### Summary:
 
 * In the RNN encoder-decoder, the Bahdanau attention mechanism treats the decoder hidden state at teh previous time step as the query, and the encoder hidden states at all the time steps as both the keys and values. 
+
+
+
+## 11.5 Multi-Head Attention
+
+* Q,K, and V can be transformed with h independentaly learned linear projections. Then these h projected queries, keys, and values are fed into attention pooling in parallel. 
+
+* In the end, h attention pooling outputs are concatenated and transformed with another learned linear projection to produce the final output. 
+
+* The multi-head attention
+
+### Model
+
+* $h_i = f(W_i^{(q)}q, W_i^{(k)}k, W_i^{(v)}v) \in \R^{p_v}$
+
+* these w are learnable parameters and f is attention pooling
+
+* The multi-head attention output: $W_o \begin{bmatrix} h_1 \\ \vdots \\ h_h \end{bmatrix} \in \mathbb{R}^{p_o}$
+
+
+
+## 11.6 Self-Attention and Positional Encoding
+
+### Self-Attention
+
+
+
+### Comparing CNNs, RNNs, and Self-Attention
+
+* CNN: Given a sequenceo f length n, and a conv layer whose kernel size is k, and num of input and output channels are both d, the computational complexity of the conv layer is $O(knd)^2$
+
+* RNN: multiplication of the $d \times d$ weight matrix and the hidden state is $O(d^2)$. There are $O(n)$ sequential operations that cannot be parallelized and the maximum path length is also $O(n)$
+
+* Self-Attn: q, k, v are all $n \times d$ matrices, so the complexity is $O(n^2d)$. Computation can be parallel with $O(1)$ sequential operations and max path length is also $O(1)$ as teh token is connected to any other token via self-attention. 
+
+* 
 
 
