@@ -159,8 +159,8 @@
 ### Summary:
 
 * In the RNN encoder-decoder, the Bahdanau attention mechanism treats the decoder hidden state at teh previous time step as the query, and the encoder hidden states at all the time steps as both the keys and values. 
-
-
+  
+  
 
 ## 11.5 Multi-Head Attention
 
@@ -177,8 +177,8 @@
 * these w are learnable parameters and f is attention pooling
 
 * The multi-head attention output: $W_o \begin{bmatrix} h_1 \\ \vdots \\ h_h \end{bmatrix} \in \mathbb{R}^{p_o}$
-
-
+  
+  
 
 ## 11.6 Self-Attention and Positional Encoding
 
@@ -194,6 +194,70 @@
 
 * Self-Attn: q, k, v are all $n \times d$ matrices, so the complexity is $O(n^2d)$. Computation can be parallel with $O(1)$ sequential operations and max path length is also $O(1)$ as teh token is connected to any other token via self-attention. 
 
-* 
+
+
+
+
+
+
+## 11.7 The Transformer Architecture
+
+* parallel computation and the shortest maximum path length. 
+
+### Model
+
+* Transformer encoder: a stack of multiple identical layers, each layer has two sublayers
+  
+  * Multi-head self-attention pooling
+  
+  * Positionwise feed-forward network. 
+  
+  * q, k, v all from the outputs of the previous encoder layer
+
+* Transformer decoder: a stck of multiple idential layers with residual connections and layer normalizations
+  
+  * layer 1 same as encoder
+  
+  * layer 2 same as encoder
+  
+  * encoder-decoder attention: 
+    
+    * queries from the outputs of decoder's self-attention sublayer
+    
+    * keys and avalues from the Transformer encoder outputs.
+
+### Positionwise Feed-Forward Networks
+
+* Positionwise feed-forwawrd network transforms the representation at all the sequence positions using the same MLP.
+
+
+
+### Residual Connection and Layer Normalization
+
+* The residual connection requires the two inputs are of the same shape so that the output tensor also has the same shape after the addition operation.
+
+
+
+### Encoder:
+
+* Multi-head attention
+
+* addnorm
+
+* positionwise ffn
+
+* addnorm
+
+* output of Transformer encoder output: (batch size, num of time steps, num_hiddens)
+
+
+
+### Decoder:
+
+* decoder self-attention
+
+* encoder-decoder attention
+
+* positionwise ffn
 
 
