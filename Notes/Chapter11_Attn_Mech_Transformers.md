@@ -193,12 +193,12 @@
 * RNN: multiplication of the $d \times d$ weight matrix and the hidden state is $O(d^2)$. There are $O(n)$ sequential operations that cannot be parallelized and the maximum path length is also $O(n)$
 
 * Self-Attn: q, k, v are all $n \times d$ matrices, so the complexity is $O(n^2d)$. Computation can be parallel with $O(1)$ sequential operations and max path length is also $O(1)$ as teh token is connected to any other token via self-attention. 
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
 
 ## 11.7 The Transformer Architecture
 
@@ -229,14 +229,14 @@
 ### Positionwise Feed-Forward Networks
 
 * Positionwise feed-forwawrd network transforms the representation at all the sequence positions using the same MLP.
-
-
+  
+  
 
 ### Residual Connection and Layer Normalization
 
 * The residual connection requires the two inputs are of the same shape so that the output tensor also has the same shape after the addition operation.
-
-
+  
+  
 
 ### Encoder:
 
@@ -249,8 +249,8 @@
 * addnorm
 
 * output of Transformer encoder output: (batch size, num of time steps, num_hiddens)
-
-
+  
+  
 
 ### Decoder:
 
@@ -261,3 +261,123 @@
 * positionwise ffn
 
 
+
+
+
+## 11.8 Transformers for Vision
+
+* Cordonnier, J.-B., Loukas, A., & Jaggi, M. (2020). On the relationship between self-attention and convolutional layers. _International Conference on Learning Representations_.
+
+* This paper proved that self-attention can learn to behave similarly to convolution. 
+
+* Vision Transofrmers (ViTs) extract patches from images and feed them into a Transformer encoder to obtain a global representation. 
+
+### Model
+
+* An input image with height h, width w, and c  channels, patch height and width both as p, then the image is split into a sequence of $m = hw/p^2$ patches, and each pathc is flattened to a vector of length $cp^2$. 
+
+
+
+### Patch Embedding
+
+* split an image into patches and linearly projecting these flattened patches.
+
+### Vision Transformer Encoder
+
+* Diff from positionwise FFN of original Transformer encoder:
+  
+  * activation func: Gaussian error linear unit (GELU)
+    
+    * a smoother ReLU
+  
+  * dropout is applied to the output of each fully connected layer in the MLP for regularization
+
+* Pre-normalization design: normalization is applied before multi-head attention or the MLP
+
+* post-normalization: normalization is placed after residual connections
+
+* pre-norm is more effective / efficient traning for transformers
+
+
+
+## 11.9 Large-Scale Pretraining with Transformers
+
+* 3 diff modes: 
+  
+  * encoder-only
+  
+  * encoder-decoder
+  
+  * decoder-only
+
+### Encoder-Only
+
+* A sequence of input tokens is converted into the same number of representations that can be further projected into output
+
+* BERT (Bidirectional Encoder Representations from Transformers)
+
+#### Pretraining BERT
+
+* Pretrained on text sequences using masked language modeling:
+  
+  * input text with randomly masked tokens is fed into a Transformer encoder to predict the masked tokens. 
+  
+  * no constraint in the attention pattern: all token can attend to each other $\rarr$ "bidirectional encoder"
+
+* Large-scale text data can be utilized without manual labeling
+
+#### Fine-Tuning BERT
+
+* Loss for predicting whether one sentence immediately follows the other. 
+
+
+
+### Encoder-Decoder
+
+* The encoder-only mode cannot generate a sequence of arbitrary length as in machine translation. 
+  
+  * for conditioning on encoder output, encoder-decoder cross-attention (MHA of decoder) allows target tokens to attend to all input tokens
+  
+  * conditioning on decoder output is achieved by "causal attention" (has little connection to the proper study of causality) pattern, where any target token can only attend to past and present tokens in the target sequence
+
+* BART and T5
+
+
+
+#### Pretraining T5
+
+* It unifies many tasks as the same text2text problem
+
+
+
+#### Fine-Tuning T5
+
+* Diff from BERT
+  
+  * T5 input includes task descriptions
+  
+  * T5 can generate sequences with arbitrary length with its Transformer decoder
+  
+  * No additional layers are required
+
+### Decoder-Only
+
+* It removes the entire encoder and the decoder sublayer with the encoder-decoder cross attention. 
+
+#### GPT and GPT-2
+
+* The attention pattern in Transformer decoder enforces that each token can only attend to its past tokens
+
+#### GPT-3 and Beyond
+
+* A pretrained language model can be trained to generate a text sequence conditional on some prefix text sequence.
+  
+  * A model may generate the output as a sequence without parameter update, conditional on an input sequnece with the task description, task-specific input-output examples, and prompt. ==> in-context learning
+  
+  * zero-shot, one-shot, and few-shot.
+
+### Scalability
+
+### Large Language Models
+
+* 
