@@ -23,8 +23,8 @@
   * empirical risk: loass on training set:  g
   
   * risk: entire population of data:  f
-
-
+    
+    
 
 ### Optimization Challenges in DL
 
@@ -55,10 +55,10 @@
 #### Vanishing Gradients
 
 * Optimization get stuck for a long time before making progress
-
-
-
-
+  
+  
+  
+  
 
 ## 12.2 Convexity
 
@@ -79,8 +79,8 @@
 * A generalization of the definition of convexity: 
   
   * $\sum_i \alpha_if(x_i) \geq f(\sum_i\alpha_ix_i) \space and \space E_X[f(X)] \geq f(E_X[X])$
-
-
+    
+    
 
 ### Properties
 
@@ -113,6 +113,66 @@
 * A projection on a convex set X: 
   
   * $Proj_x(x) = {argmin \atop {x' \in \textit{X}}}||x - x'||$
+
+
+
+
+
+## 12.3 Gradient Descent
+
+### One-Dimensional Gradient Descent
+
+* $\epsilon = - \eta f'(x)$
+
+* For $f: \R \rarr \R$, using a Taylor expansion we obtain: $f(x+\epsilon) = f(x) + \epsilon f'(x) + \Omicron (\epsilon ^2)$
+
+* Combining above: $f(x - \eta f'(x)) = f(x) - \eta f'^2(x) + \Omicron(\eta^2f'^2(x))$
+
+* if f'(x) != 0 then we make progress since $\eta f'^2(x)>0$
+  
+  * Thus, $f(x - \eta f'(x)) \lessapprox f(x)$
+
+#### Learning Rate
+
+* Learning rate $\eta$ 
+  
+  * Too small: x update too slowly
+  
+  * Too large: first-order taylor exapansion become significant -> even diverge
+
+#### Local Minima
+
+### Multivariate Gradient Descent
+
+
+
+### Summary
+
+* Preconditioning can help with sacle adjustment
+
+*  Newton's method is a lot faster once it has started working properly in *convex* problem
+
+* Beware of using Newton's method without any adjustments for nonconvex problems
+
+
+
+## 12.4 Stochastic Gradient Descent
+
+### Stochastic Gradient Updates
+
+### Dynamic Learning Rate
+
+* Basic Strategies
+  
+  * piecewise constant: $\eta(t) = \eta_i if t_i \le t \le t_{i+1}$
+  
+  * exponential decya: $\eta(t) = \eta_0 \cdot e^{-\lambda t}$
+    
+    * this may make the training early stop before converge
+  
+  * polynomial decay: $\eta(t) = \eta_0 \cdot (\beta t + 1)^{-\alpha}$
+    
+    * a popular choice is $\alpha = 0.5$ with polynomial decay
 
 
 
