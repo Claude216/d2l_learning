@@ -65,8 +65,8 @@
 * The target model copies all the model designs with their parameters from the source model except the output layer, and fine-tunes these parameters based on the target dataset. But the output layer of target model needs to be trained from scratch
 
 * Fine-tuning parameters uses a smaller learning rate, while training the output layer from scratch can use a larger learning rate
-
-
+  
+  
 
 ## 14.3 Object Detection and Bounding Boxes
 
@@ -75,8 +75,8 @@
 ### Bounding Boxes
 
 * convert between two commonly used bounding box representations
-
-
+  
+  
 
 ## 14.4 Anchor Boxes
 
@@ -119,3 +119,21 @@
     * Repeat until all the boaxes in L has been used as a basis; any IoU of pair of boxes below threshold $\epsilon$; thus no pair too similar with each other
     
     * Ouput all the predicted bounding boxes in list L
+
+## 14.5 Multiscale Object Detection
+
+### Multiscale Anchor Boxes
+
+### Multiscale Detection
+
+### Summary
+
+* Generate anchor boxes with different sizes to detect objects with different sizes
+
+* By defining the shape of feature maps, we can determine centers of uniformly sampled anchor boxes on any image. 
+
+
+
+## 14.6 Object Detection Dataset
+
+* 
