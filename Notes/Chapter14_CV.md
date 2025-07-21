@@ -131,9 +131,41 @@
 * Generate anchor boxes with different sizes to detect objects with different sizes
 
 * By defining the shape of feature maps, we can determine centers of uniformly sampled anchor boxes on any image. 
-
-
+  
+  
 
 ## 14.6 Object Detection Dataset
 
-* 
+
+
+## 14.7 Single Shot Multibox Detection
+
+### Model
+
+* class prediction and bounding box prediction
+
+#### Class Prediction Layer
+
+* SSD uses channels of convolutional layers to predict classes to reduce model complexity
+
+* there is a one-to-one correspondence between outputs and inputs at the same spatial dimensions of feature maps. 
+
+#### Bounding Box Prediction Layer
+
+* num of output for each anchor box: 4 offsets rather than q+1 classes
+
+#### Concatenating Predictions for Multiple Scales
+
+
+
+
+
+## 14.8 Region-based CNNs (R-CNNs)
+
+### R-CNNs
+
+* it first extracts many region propasals from the input image, labeling their classes and bounding boxes
+
+* perform forward propagation on each region proposal to extract its features. Then features are used for predicting the class and bounding box of this region proposal
+
+
