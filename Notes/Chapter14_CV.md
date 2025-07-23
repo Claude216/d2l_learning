@@ -169,3 +169,51 @@
 * perform forward propagation on each region proposal to extract its features. Then features are used for predicting the class and bounding box of this region proposal
 
 
+
+## 14.9 Semantic Segmentation and the dataset
+
+* how to divide an image into regions belonging to different semantic classes. 
+
+### Image Segmentation and Instance Segmentation
+
+* 2 tasks similar to semantic segmentation
+  
+  * Image segmentation
+    
+    * divide into several constituent regions
+    
+    * correlation between pixels in the image
+    
+    * no need for label information about image pixels during trianing
+    
+    * cannot guarantee the segmented regions will have the semantics we hope to obtain.
+  
+  * instance segmentation
+    
+    * simultaneous detection and segmentation
+    
+    * how to recognize pixel-level regions of each obj instance 
+
+### The Pascal VOC2012 Semantic Segmentation Dataset
+
+
+
+## 14.10 Transposed Convolution
+
+* fractionally-strided convolution
+
+### Basic Operation
+
+* regular conv reduces input elements via the kernel
+
+* transposed conv broadcasts input elementats via the kernel
+
+### Padding, Strides, and Multiple Channels
+
+* regular's padding applied to input
+
+* transposed's padding applied to output
+
+### Connection to Matrix Transposition
+
+* 
