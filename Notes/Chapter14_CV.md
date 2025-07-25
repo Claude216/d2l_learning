@@ -167,8 +167,8 @@
 * it first extracts many region propasals from the input image, labeling their classes and bounding boxes
 
 * perform forward propagation on each region proposal to extract its features. Then features are used for predicting the class and bounding box of this region proposal
-
-
+  
+  
 
 ## 14.9 Semantic Segmentation and the dataset
 
@@ -216,4 +216,30 @@
 
 ### Connection to Matrix Transposition
 
-* 
+
+
+
+
+## 14.11 Fully Convolutional Networks
+
+### The model
+
+
+
+## 14.12 Neural Style Transfer
+
+* layerwise representations of a CNN to automatically apply the style of one to another.
+
+* style transfer
+
+### Method
+
+* calculate loss of style transfer through forward propagation, and update parameters through backpropagation
+
+* loss func: 
+  
+  * content loss 
+  
+  * style loss
+  
+  * total variation loss
