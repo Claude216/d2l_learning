@@ -112,3 +112,5 @@
 * Using Binary Cross-Entropy Loss as the loss
 
 * Using cosine similarity of word vectors to find the word from the dictionary that are most semantically similar to an input word.
+
+
