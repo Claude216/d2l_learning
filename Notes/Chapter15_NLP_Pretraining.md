@@ -145,10 +145,10 @@
 * The center word vector and the context word vector are mathematically equivalent for any word in GloVe
 
 * GloVe can be interpreted from the ratio of word-word co-occurrence probabilities. 
-
-
-
-
+  
+  
+  
+  
 
 ## 15.6 Subword Embedding
 
@@ -159,17 +159,125 @@
 * a center word is represented by the sum of its subword vectors
 
 * 3-gram example of "where": "\<wh", "whe", "her", "ere", "re\>" and the subword "\<where>"
-
-
+  
+  
 
 ### Byte Pair Encoding
 
 * a statistical analysis of the training dataset to discover common symbols within a word. A greedy approach, it merges the most frequent pair of consecutive symbols. 
-
-
+  
+  
 
 ### Summary
 
 * Subword embedding may improve the quality of representations of rare words and out-of dictionary words. 
+
+
+
+
+
+## 15.7 Word Similarity and Analogy
+
+* 50-dimensional GloVe Embeddings
+
+
+
+### Applying Pretrained Word Vectors
+
+#### Word Similarity
+
+* cosine similarities. 
+
+* search for similar words using the pretrained word vectors. j
+
+#### Word Analogy
+
+* apply word cectors to word analogy tasks. 
+
+* Ex:
+  
+  * For a word analogy: $a:b::c:d$,  $vec(d) = vec(c) + vec(b) - vec(a)$
+
+
+
+
+
+## 15.8 Bidirectional Encode Representations from Transformers (BERT)
+
+### From Context-Independent to Context-Sensitive
+
+* limitation of context-independent
+  
+  * same word in diff context contains diff meanings
+
+* Context-sensitive word representations
+  
+  * TagLM
+  
+  * CoVe
+  
+  * ELMo
+
+### From Task-Specific to Task-Agnostic
+
+* GPT: general task agnostic model for context-sensitive representations
+
+* ELMo freezes parameters of the pretrained model, GPT fine-tunes all the parameters in the pretrained Transformer decoder during supervised learning of the downstream task. 
+
+* Autoregressive nature of LM: only looking forward (left-to-right)
+
+
+
+### BERT: Combining the Best of Both Worlds
+
+* represent any token based on its bidirectional context.
+
+### Input Representation
+
+* BERT input sequence:
+  
+  * <cls> 
+  
+  * <sep>
+
+* One BERT input sequence may include 1 text sequence or 2 text sequences
+
+* Transformer encoder as its bidirectional architecture. 
+  
+  * BERT uses learnable positional embeddings
+
+### Pretraining Tasks
+
+* masked language modeling and next sentence prediction
+
+#### Masked Language Modeling
+
+* masking tokens and using tokens from bidirectional context to predict the masked tokens in a self-supervised fashion----> masked language model
+
+* artificial token <mask> will never appear in fine-tuning. 
+
+* To avoid such a mismatch between pretraining and fine-tuning, if a token is masked, in the input it will be replaced with: 
+  
+  * special <mask> token for 80% of the time
+  
+  * random token for 10%
+  
+  * unchanged label token for 10%
+
+* occasional noise encourages BERT to be less biased towards the masked token. 
+
+#### Next Sentence Prediction
+
+* binary classification task to help understand the relationship between 2 text sequaneces--> next sentence prediction
+
+
+
+### All together
+
+* BERTEncoder
+
+* MaskLM
+
+* NextSentencePred
 
 
