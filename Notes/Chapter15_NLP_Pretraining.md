@@ -171,16 +171,16 @@
 ### Summary
 
 * Subword embedding may improve the quality of representations of rare words and out-of dictionary words. 
-
-
-
-
+  
+  
+  
+  
 
 ## 15.7 Word Similarity and Analogy
 
 * 50-dimensional GloVe Embeddings
-
-
+  
+  
 
 ### Applying Pretrained Word Vectors
 
@@ -197,10 +197,10 @@
 * Ex:
   
   * For a word analogy: $a:b::c:d$,  $vec(d) = vec(c) + vec(b) - vec(a)$
-
-
-
-
+    
+    
+    
+    
 
 ## 15.8 Bidirectional Encode Representations from Transformers (BERT)
 
@@ -225,8 +225,8 @@
 * ELMo freezes parameters of the pretrained model, GPT fine-tunes all the parameters in the pretrained Transformer decoder during supervised learning of the downstream task. 
 
 * Autoregressive nature of LM: only looking forward (left-to-right)
-
-
+  
+  
 
 ### BERT: Combining the Best of Both Worlds
 
@@ -269,8 +269,8 @@
 #### Next Sentence Prediction
 
 * binary classification task to help understand the relationship between 2 text sequaneces--> next sentence prediction
-
-
+  
+  
 
 ### All together
 
@@ -281,3 +281,9 @@
 * NextSentencePred
 
 
+
+
+
+## 15.9 The Dataset for Pretraining BERT
+
+## 15.10 Pretraining BERT
