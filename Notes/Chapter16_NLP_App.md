@@ -33,8 +33,8 @@
 ### The textCNN Model
 
 * tansforms individual token representations into downstream application outputs using one-dimensional convolutional layers and max-over-time pooling layers. 
-
-
+  
+  
 
 ## 16.4 Natural Language Inference and the Dataset
 
@@ -53,3 +53,19 @@
   * Neutral: all the other cases
 
 ### SNLI
+
+## 16.5 NL Inference: Using Attention
+
+* decomposable attention: 
+  
+  * attending
+  
+  * comparing
+  
+  * aggregating
+
+* align tokens in one text sequence to every token in the other and vice versa. 
+
+* decomposition trick leads to a linear complexity than quadratic complexity 
+
+* 
